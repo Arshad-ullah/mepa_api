@@ -1,20 +1,11 @@
 const express=require('express');
 
+const authRouter=require('./routes/auth')
+
 const app=express();
 
 
-app.get('/api',(req,res)=>{
-
-    res.send({
-        status:true,
-        message: "Welcome to Peshawar"
-    })
-})
-
-
-
-
-
+app.use('/v1',authRouter.router)
 
 
 app.listen(8000,()=>console.log("server started"))
