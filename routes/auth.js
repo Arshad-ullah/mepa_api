@@ -4,6 +4,7 @@ const router= express.Router();
 
 
 router.get('/api',authController.login)
+router.post('/register',authController.register)
 
 
 

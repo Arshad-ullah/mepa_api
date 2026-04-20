@@ -9,3 +9,15 @@ exports.login = (req = Request, res = Response) => {
         
     });
 };
+
+
+
+exports.register=(req=Request, res=Response)=>{
+
+    
+    res.json({
+        user: req.body
+    })
+
+    
+}
