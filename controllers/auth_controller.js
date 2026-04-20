@@ -2,6 +2,10 @@ const { Request, Response } = require('express');
 
 exports.login = (req = Request, res = Response) => {
     res.json({
-        message: "This is Testing"
+        name:"Arshad",
+        f_name:"Ibrahim Gul",
+        age: 25,
+        address:"Hangue Karbogha sharif",
+        
     });
 };
