@@ -17,10 +17,7 @@ exports.login = (req = Request, res = Response) => {
 // 1: email, phone, address,password,gender 
 exports.register = (req, res) => {
 
-
-    console.log(req.body);
-
-
+    console.log(req.headers["host"]);
 
     const { email, phone, address, password, gender } = req.body;
 
