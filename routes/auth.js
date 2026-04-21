@@ -1,11 +1,12 @@
-const express=require("express")
-const authController=require('../controllers/auth_controller')
-const router= express.Router();
+const express = require("express")
+const authController = require('../controllers/auth_controller')
+const registerValidation = require('../validator')
+const router = express.Router();
 
 
-router.get('/api',authController.login)
-router.post('/register',authController.register)
+router.get('/api', authController.login)
+router.post('/register', registerValidation.registerValidation, authController.register)
 
 
 
-exports.router=router;
+exports.router = router;
