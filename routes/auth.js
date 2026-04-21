@@ -5,8 +5,6 @@ const router = express.Router();
 
 
 router.get('/api', authController.login)
-router.post('/register', registerValidation.registerValidation, authController.register)
-
-
+router.post('/register', authController.register)
 
 exports.router = router;
