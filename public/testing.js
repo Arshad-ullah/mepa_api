@@ -120,7 +120,7 @@ const user = {
 
 // [["a",1],["b",2],["c",3]]
 
-// const original = { name: "Test", details: { age: 20 } };
+const original = { name: "Test", details: { age: 20 } };
 
 
 
@@ -134,6 +134,17 @@ const user = {
 // copy.name = "Jahan"
 
 // console.log(original);
+
+
+
+
+// const copy = JSON.parse(JSON.stringify(original))
+const copy = structuredClone(original)
+
+copy.name = "Jahan"
+
+
+console.log(original);
 
 
 
