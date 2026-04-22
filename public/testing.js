@@ -120,23 +120,20 @@ const user = {
 
 // [["a",1],["b",2],["c",3]]
 
-
-const obj = {
-    a: 1,
-    b: 2,
-    c: 3
-};
+// const original = { name: "Test", details: { age: 20 } };
 
 
 
 
-const list = Object.entries(obj)
+// const copy = original;
 
 
+// console.log(copy);
 
 
-console.log(list);
+// copy.name = "Jahan"
 
+// console.log(original);
 
 
 
