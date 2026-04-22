@@ -109,15 +109,33 @@ const user = {
 
 
 
-user.address.zip = 54321
+// user.address.zip = 54321
 
-console.log(user.address.city);
-
-
-
-console.log(user.address);
+// console.log(user.address.city);
 
 
+
+// console.log(user.address);
+
+
+// [["a",1],["b",2],["c",3]]
+
+
+const obj = {
+    a: 1,
+    b: 2,
+    c: 3
+};
+
+
+
+
+const list = Object.entries(obj)
+
+
+
+
+console.log(list);
 
 
 
