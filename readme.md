@@ -3,6 +3,9 @@
 # var,let, const scope variables..
 
 
+# js array object.. and it's method..
+
+
 
 
 
