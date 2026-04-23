@@ -2,14 +2,13 @@ let name = "Arsahd"
 
 
 
-{
 
-    let name = "Hellp"
+if (true) {
 
+    let name = "Jahan"
 }
 
-
-console.log(hello);
+console.log(name);
 
 
 // function getName() {
