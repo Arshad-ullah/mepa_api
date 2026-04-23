@@ -8,8 +8,6 @@
 
 // console.log(name);
 
-
-
 // const student = {
 //     name: "Arshad",
 //     age: 23,
@@ -68,13 +66,6 @@
 // console.log(person);
 
 
-
-
-
-
-
-
-
 // const marks = {
 //     math: 80,
 //     english: 70,
@@ -90,61 +81,79 @@
 //     count = +marks[key]
 
 
-
-
-
 // }
 
 // Print city
 // Update zip to 54321
 
-const user = {
-    name: "Ali",
-    address: {
-        city: "Karachi",
-        zip: 12345
-    }
-};
+// const user = {
+//     name: "Ali",
+//     address: {
+//         city: "Karachi",
+//         zip: 12345
+//     }
+// };
 
 
 
 
-// user.address.zip = 54321
+// // user.address.zip = 54321
 
-// console.log(user.address.city);
-
-
-
-// console.log(user.address);
-
-
-// [["a",1],["b",2],["c",3]]
-
-const original = { name: "Test", details: { age: 20 } };
+// // console.log(user.address.city);
 
 
 
+// // console.log(user.address);
 
-// const copy = original;
+
+// // [["a",1],["b",2],["c",3]]
+
+// const original = { name: "Test", details: { age: 20 } };
+
+// // const copy = original;
+
+// // console.log(copy);
 
 
-// console.log(copy);
+// // copy.name = "Jahan"
 
+// // console.log(original);
+
+// // const copy = JSON.parse(JSON.stringify(original))
+// const copy = structuredClone(original)
 
 // copy.name = "Jahan"
+
 
 // console.log(original);
 
 
 
 
-// const copy = JSON.parse(JSON.stringify(original))
-const copy = structuredClone(original)
 
-copy.name = "Jahan"
+var users2 = {}
+
+const users = {
+    user1: { age: 22 },
+    user2: { age: 17 },
+    user3: { age: 25 }
+};
 
 
-console.log(original);
+
+for (const key in users) {
+    if (users[key].age >= 18) {
+
+        users2[key] = users[key]
+
+    }
+
+
+}
+
+
+
+console.log(users2);
 
 
 
