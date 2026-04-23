@@ -15,11 +15,36 @@ let names = ["Arshad", "Jahan", "Gul"]
 // names.shift()
 // names.pop()
 
-// now in the middle so we need to use splice have two paramters index and value
+//[Slice] now in the middle so we need to use splice have two paramters index and value
 
 
 
-names.splice(0, 1, "janm,d.ajkl", "Ikram")
-console.log(names);
+// names.splice(0, 1, "janm,d.ajkl", "Ikram")
+
+
+
+// for (const element in names) {
+
+//     console.log(element);
+
+
+// }
+
+
+// for (const element of names) {
+
+//     console.log(element);
+
+
+// }
+
+
+
+console.log(names.join(''));
+
+
+
+
+
 
 
