@@ -78,15 +78,36 @@ let names = ["Arshad", "Jahan", "Gul"]
 
 // console.log(newAr);
 
-const newArr = ["Jahan", "Kaleem", "Ikram"]
+// const newArr = ["Jahan", "Kaleem", "Ikram"]
 
 
-const index = newArr.indexOf("Kaleem", 0,)
+// const index = newArr.indexOf("Kaleem", 0,)
 
 
 
 
-console.log(newArr[index]);
+// console.log(newArr[index]);
+
+
+
+const newArr = [
+    {
+        name: "Arshad",
+        age: 2
+    },
+    {
+        name: "Jahan",
+        age: 21
+    },
+    {
+        name: "Umar",
+        age: 21
+    },
+]
+
+const obj = newArr.find((item) => item.age >= 21)
+
+console.log(obj);
 
 
 
