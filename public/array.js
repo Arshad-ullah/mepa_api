@@ -40,18 +40,53 @@ let names = ["Arshad", "Jahan", "Gul"]
 
 
 
-console.log("before..");
+// let obj = {
+//     name: "Arshad",
+//     age: 23,
 
-console.log(names);
+// }
 
 
-names.splice(0, 1)
 
 
-console.log('after ...');
 
-console.log(names);
+// delete obj.name
 
+
+// console.log(obj);
+
+
+// console.log("before..");
+
+// console.log(names);
+
+
+// names.splice(-1, 2, "Asim", "Kamal", "Nod")
+
+
+// console.log('after ...');
+
+
+// const newAr = names.slice(0, 3)
+
+// console.log(newAr);
+
+
+// const obj = [23, 24, 12]
+
+// const newAr = names.concat(obj)
+
+// console.log(newAr);
+
+const newArr = ["Jahan", "Kaleem", "Ikram"]
+
+
+const index = newArr.indexOf("Kaleem", 0,)
+
+
+
+
+console.log(newArr[index]);
 
 
 
