@@ -140,17 +140,13 @@ const users = {
 };
 
 
-
 for (const key in users) {
     if (users[key].age >= 18) {
-
-        users2[key] = users[key]
+      users2[key] = users[key]
 
     }
 
-
 }
-
 
 
 console.log(users2);

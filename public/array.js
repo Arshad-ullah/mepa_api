@@ -40,7 +40,22 @@ let names = ["Arshad", "Jahan", "Gul"]
 
 
 
-console.log(names.join(''));
+console.log("before..");
+
+console.log(names);
+
+
+names.splice(0, 1)
+
+
+console.log('after ...');
+
+console.log(names);
+
+
+
+
+
 
 
 
