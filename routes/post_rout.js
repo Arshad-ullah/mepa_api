@@ -8,6 +8,7 @@ const router = express.Router()
 router
     .get('/posts', postController.getAllPost)
     .get('/post', postController.getPost)
+    .post('/createNewUser', postController.addNewPost)
 
 
 

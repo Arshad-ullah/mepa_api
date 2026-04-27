@@ -9,10 +9,7 @@ exports.getAllPost = (req = Request, res = Response) => {
 
 }
 
-
-
 // get specific one..
-
 exports.getPost = (req = Request, res = Response) => {
 
     const id = +req.body.id
@@ -22,9 +19,24 @@ exports.getPost = (req = Request, res = Response) => {
     res.status(200).json({
         post: obj
     })
+}
 
 
 
+// create 
 
+exports.addNewPost = (req = Request, res = Response) => {
+
+
+
+    data.push(req.body);
+
+
+    res.status(201).json({
+        "successful created": true,
+        post: req.body
+
+    })
 
 }
+
