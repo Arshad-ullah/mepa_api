@@ -9,6 +9,7 @@ router
     .get('/posts', postController.getAllPost)
     .get('/post', postController.getPost)
     .post('/createNewUser', postController.addNewPost)
+    .delete('/deletePost', postController.deletePost)
 
 
 
