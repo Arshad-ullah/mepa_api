@@ -5,7 +5,9 @@ const router = express.Router()
 
 
 
-router.get('/post', postController.getAllPost);
+router
+    .get('/posts', postController.getAllPost)
+    .get('/post', postController.getPost)
 
 
 
