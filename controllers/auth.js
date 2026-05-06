@@ -4,6 +4,10 @@ const hashPassword = require('../hash_password')
 
 exports.login = async (req = Request, res = Response) => {
 
+
+    console.log('request:' + req.body.email);
+
+
     const password = req.body.password;
 
     const hash_password = await hashPassword.hashPassword1(
