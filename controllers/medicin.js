@@ -23,18 +23,12 @@ exports.addNewMedicine = (req = Request, res = Response) => {
     if (name == null || detail == null || image == null) return res.json({ message: "Paramter empty" });
 
 
-
     medicines.push(req.body)
 
     res.status(201).json({
         message: "successfull created",
         data: req.body
     })
-
-
-
-
-
 
 
 }
