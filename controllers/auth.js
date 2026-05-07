@@ -1,10 +1,14 @@
 
 const hashPassword = require('../hash_password')
 const { Request, Response, request, response } = require('express')
+
+
 exports.login = async (req = request, res = response) => {
 
-    const { email, password } = req.body.password;
-    const hash_password = await hashPassword.comparePassword(password)
+    const { email, password } = req.body;
+
+
+    const hash_password = await hashPassword.hashPassword1(password)
 
     res.status(201).json({
         message: "Login api",
@@ -13,27 +17,21 @@ exports.login = async (req = request, res = response) => {
     })
 }
 
-
-
-
 // register api...
+exports.register = async (req, res) => {
+    try {
 
-
-//name,fatherName, email,password,phone, address, gender,University, department,Roll_no,
-exports.register = (req = request, res = response) => {
-
-
-
+        const password = req.body.password
 
 
 
+        // `value` is the clean, validated data — safe to use
+        const hashedPassword = await hashPassword.hashPassword1(password);
+        // const newUser = await User.create({ ...value, password: hashedPassword });
 
+        return res.status(201).json({ success: true, data: hashedPassword });
 
-
-    const { name, fatherName, email, phone, address, gender, university, department, rollNo } = req.body
-
-
-
-
-}
-
+    } catch (error) {
+        return res.status(500).json({ success: false, message: error.message });
+    }
+};
