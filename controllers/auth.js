@@ -1,24 +1,18 @@
 const { Request, Response } = require('express')
 
 const hashPassword = require('../hash_password')
-
 exports.login = async (req = Request, res = Response) => {
 
 
-    console.log('request:' + req.body.email);
+    const { email, password } = req.body.password;
+    const hash_password = await hashPassword.comparePassword(password)
 
 
-    const password = req.body.password;
-
-    const hash_password = await hashPassword.hashPassword1(
-        password
-    )
     res.status(201).json({
         message: "Login api",
-        "hashpassword": hash_password,
+        "matchPassword": hash_password,
 
     })
-
 }
 
 
