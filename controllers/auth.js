@@ -19,7 +19,6 @@ exports.login = async (req = request, res = response) => {
 
 exports.register = async (req, res) => {
     try {
-
         const password = req.body.password;
 
         const hashedPassword = await hashPassword.hashPassword1(password);
