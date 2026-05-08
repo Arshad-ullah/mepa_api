@@ -8,13 +8,8 @@ const { registerValidation } = require('../validations/validator');
 
 const router = express.Router()
 
-
-
-
 router
     .post('/login', authController.login)
     .post('/register', registerValidation, validate, authController.register)
-
-
 
 exports.router = router;
