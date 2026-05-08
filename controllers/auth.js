@@ -26,14 +26,15 @@ exports.register = async (req, res) => {
 
         // remove password from token payload
         const { password: _, ...userData } = req.body;
-
         userData.password = hashedPassword
-
-        userData.token = token.generateToken(userData);
-
         return res.status(201).json({
             success: true,
-            user: userData
+            user: userData,
+            tokens: {
+                accessToken: token.generateAccessToken(userData),
+                refreshToken: token.generateRefreshToken(userData),
+
+            }
 
         });
 
