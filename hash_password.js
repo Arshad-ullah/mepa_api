@@ -7,8 +7,8 @@ async function hashPassword1(userPassword) {
 }
 
 
-async function comparePassword(userPassword) {
-    const value = await bcrypt.compare(userPassword, "$2b$10$dZ.bJ6EhCef0vZakAXEv6uuZ4w.wi0ibkRKrVjx7EAM18JSsMSFiC")
+async function comparePassword(userPassword, storePassword) {
+    const value = await bcrypt.compare(userPassword, storePassword)
 
     console.log("value.." + value);
 
