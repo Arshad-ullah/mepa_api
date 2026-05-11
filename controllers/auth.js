@@ -50,8 +50,12 @@ exports.getAllUser = async (req = request, res = response) => {
     // User Schema
     const userSchema = new mongoose.Schema({},);
 
+
+
     // Model
     const User = mongoose.model('users', userSchema);
+
+
 
     const users = await User.find()
 
