@@ -11,5 +11,7 @@ const router = express.Router()
 router
     .post('/login', authController.login)
     .post('/register', registerValidation, validate, authController.register)
+    .get('/users', authController.getAllUser)
+
 
 exports.router = router;

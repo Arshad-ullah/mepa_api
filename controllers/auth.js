@@ -1,15 +1,14 @@
 
 const hashPassword = require('../hash_password')
 const { Request, Response, request, response } = require('express')
+const mongoose = require('mongoose');
 
 const token = require('../jwt/jwt_toke')
 
 
 exports.login = async (req = request, res = response) => {
     const { email, password } = req.body;
-
     const hash_password = await hashPassword.hashPassword1(password)
-
     res.status(201).json({
         message: "Login api",
         "matchPassword": hash_password,
@@ -44,3 +43,26 @@ exports.register = async (req, res) => {
         });
     }
 };
+
+
+exports.getAllUser = async (req = request, res = response) => {
+
+    // User Schema
+    const userSchema = new mongoose.Schema({},);
+
+    // Model
+    const User = mongoose.model('users', userSchema);
+
+    const users = await User.find()
+
+
+
+    res.status(200).json({
+        success: true,
+        message: "successfully",
+        users: users
+    })
+
+
+
+}
