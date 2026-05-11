@@ -1,7 +1,9 @@
 
 const hashPassword = require('../hash_password')
 const { Request, Response, request, response } = require('express')
-const mongoose = require('mongoose');
+
+const Model = require('../model/users')
+
 
 const token = require('../jwt/jwt_toke')
 
@@ -47,17 +49,9 @@ exports.register = async (req, res) => {
 
 exports.getAllUser = async (req = request, res = response) => {
 
-    // User Schema
-    const userSchema = new mongoose.Schema({},);
 
 
-
-    // Model
-    const User = mongoose.model('users', userSchema);
-
-
-
-    const users = await User.find()
+    const users = await Model.find()
 
 
 
