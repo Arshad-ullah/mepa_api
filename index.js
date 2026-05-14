@@ -15,7 +15,7 @@ app.use('/v1', authRouter.router)
 app.use('/v2', postRouter.router)
 app.use('/api', medicineRouter.router)
 
-app.use('v2', studentRouter.rounter)
+app.use('/v2', studentRouter.rounter)
 
 
 
@@ -30,10 +30,6 @@ const mongoose = require('mongoose');
 mongoose.connect(uri)
     .then(() => console.log("✅ Successfully connected to MongoDB via Compass URI"))
     .catch(err => console.error("❌ Connection error:", err));
-
-
-
-
 
 
 app.listen(8000, () => console.log("server started"))

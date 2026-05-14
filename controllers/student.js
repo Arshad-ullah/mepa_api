@@ -4,20 +4,25 @@ const Students = require('../model/student')
 
 
 
-exports.getStudents = (req = request, res = response) => {
 
-    console.log("Testing....");
+exports.getStudents = async (req, res) => {
+    try {
+        console.log("Testing....");
+
+        const students = await Students.find();
 
 
-
-    const students = Students.find();
-
-
-    if (!students) {
 
         res.status(200).json({
             success: true,
-            data: students
-        })
+            data: students,
+            totalStudents: students.length,
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message,
+
+        });
     }
-}
+};
