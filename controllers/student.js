@@ -9,17 +9,9 @@ exports.getStudents = async (req, res) => {
     try {
         console.log("Testing....");
 
-        const students = await Students.find()
-            .sort({ cgpa: 1, grade: 1 })
-            .lean();
-
-
+        const students = await Students.find({}, { name: 1, grade: 1, _id: 0, cgpa: 1 }).lean()
 
         console.log(students[0].name);
-
-
-
-
 
         res.status(200).json({
             success: true,
