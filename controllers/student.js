@@ -9,7 +9,15 @@ exports.getStudents = async (req, res) => {
     try {
         console.log("Testing....");
 
-        const students = await Students.find().sort({ cgpa: 1, grade: 1 })
+        const students = await Students.find()
+            .sort({ cgpa: 1, grade: 1 })
+            .lean();
+
+
+
+        console.log(students[0].name);
+
+
 
 
 
