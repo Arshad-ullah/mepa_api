@@ -1,6 +1,7 @@
 const { Request, Response, request, response } = require('express')
 
-const Students = require('../model/student')
+const Students = require('../model/student');
+const { link } = require('joi');
 
 
 exports.createStudent = async (req = request, res = response) => {
@@ -69,6 +70,31 @@ exports.createStudent = async (req = request, res = response) => {
     }
 
 }
+
+
+// READ data..---------->> 
+
+
+exports.getStudents = async (req = request, res = response) => {
+    try {
+        const students = await Students.find()
+        return res.status(200).json({
+            success: true,
+            message: 'Student get successfully',
+            data: students,
+
+        })
+
+    } catch (error) {
+
+        return res.status(500).json({
+            success: false,
+            message: error.message,
+        });
+
+    }
+}
+
 
 
 
