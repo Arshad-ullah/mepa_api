@@ -3,30 +3,72 @@ const { Request, Response, request, response } = require('express')
 const Students = require('../model/student')
 
 
-
-
-exports.getStudents = async (req, res) => {
+exports.createStudent = async (req = request, res = response) => {
     try {
 
+        const { studentId, name, age, gender, grade, course, semester, email, phone, cgpa, isActive, city } = req.body
 
-        console.log("Testing....");
+        if (
+            !studentId ||
+            !name ||
+            !age ||
+            !gender ||
+            !grade ||
+            !course ||
+            !semester ||
+            !city ||
+            !email ||
+            !phone ||
+            cgpa === undefined
+        ) {
+            return res.status(400).json({
+                success: false,
+                message: 'All fields are required',
+            });
+        }
 
-        const students = await Students.find({}, { name: 1, grade: 1, _id: 0, cgpa: 1 }).sort({ name: 1 }).lean()
+        // Check existing student
+        const existingStudent = await Students.findOne({
+            $or: [{ studentId }, { email }],
 
-        console.log(students[0].name);
+            // studentId: studentId
+        });
 
-        res.status(200).json({
+        if (existingStudent) {
+            return res.status(409).json({
+                success: false,
+                message: 'Student already exists',
+            });
+        }
+
+        const student = await Students.create({
+            studentId,
+            name,
+            age,
+            gender,
+            grade,
+            course,
+            semester,
+            city,
+            email,
+            phone,
+            cgpa,
+            isActive,
+        });
+
+        return res.status(201).json({
             success: true,
-            data: students,
-            totalStudents: students.length,
+            message: 'Student created successfully',
+            data: student,
         });
     } catch (error) {
-        res.status(500).json({
+        return res.status(500).json({
             success: false,
             message: error.message,
-
         });
     }
 
+}
 
-};
+
+

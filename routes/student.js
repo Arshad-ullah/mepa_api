@@ -4,7 +4,7 @@ const controller = require('../controllers/student')
 const rounter = express.Router()
 
 
-rounter.get('/student', controller.getStudents)
+rounter.post('/createStudent', controller.createStudent)
 
 
 
