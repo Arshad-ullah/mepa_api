@@ -7,5 +7,6 @@ const rounter = express.Router()
 rounter
     .post('/createStudent', controller.createStudent)
     .get('/students', controller.getStudents)
+    .delete('/deleteStudent', controller.deleteStudent)
 
 exports.rounter = rounter

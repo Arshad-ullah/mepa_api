@@ -93,8 +93,47 @@ exports.getStudents = async (req = request, res = response) => {
         });
 
     }
+
+
 }
 
 
 
+
+// DELET----->> student delete api
+
+
+exports.deleteStudent = async (req = request, res = response) => {
+
+    try {
+
+        const studentId = req.body.studentId
+
+
+        const student = await Students.findOneAndDelete({
+            studentId,
+        })
+
+
+        if (!student) return res.status(200).json({
+
+            success: false,
+            message: "Not found"
+
+        })
+
+        return res.status(200).json({
+            success: true,
+            message: 'Student deleted successfully',
+            data: student,
+        })
+    } catch (error) {
+
+        return res.status(500).json({
+            success: false,
+            message: error.message,
+        });
+
+    }
+}
 
