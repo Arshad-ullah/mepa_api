@@ -102,18 +102,14 @@ exports.getStudents = async (req = request, res = response) => {
 
 // DELET----->> student delete api
 
-
 exports.deleteStudent = async (req = request, res = response) => {
 
     try {
-
         const studentId = req.body.studentId
-
 
         const student = await Students.findOneAndDelete({
             studentId,
         })
-
 
         if (!student) return res.status(200).json({
 
@@ -136,4 +132,95 @@ exports.deleteStudent = async (req = request, res = response) => {
 
     }
 }
+
+
+// UPDATE student api
+
+exports.updateStudent = async (req = request, res = response) => {
+    try {
+
+        const { studentId } = req.params;
+
+        console.log("sttudentId.." + studentId);
+
+
+        const {
+            name,
+            age,
+            gender,
+            grade,
+            course,
+            semester,
+            city,
+            email,
+            phone,
+            cgpa,
+            isActive,
+        } = req.body;
+
+        // Check student exists
+        const existingStudent = await Students.findOne({ studentId });
+
+        if (!existingStudent) {
+            return res.status(404).json({
+                success: false,
+                message: 'Student not found',
+            });
+        }
+
+        // Optional: check email already used by another student
+        if (email) {
+            const emailExists = await Students.findOne({
+                email,
+                studentId: { $ne: studentId },
+            });
+
+            if (emailExists) {
+                return res.status(409).json({
+                    success: false,
+                    message: 'Email already in use',
+                });
+            }
+        }
+
+        // Update student
+        const updatedStudent = await Students.findOneAndUpdate(
+            { studentId },
+            {
+                name,
+                age,
+                gender,
+                grade,
+                course,
+                semester,
+                city,
+                email,
+                phone,
+                cgpa,
+                isActive,
+            },
+            {
+                new: true,
+                runValidators: true,
+            }
+        );
+
+        return res.status(200).json({
+            success: true,
+            message: 'Student updated successfully',
+            data: updatedStudent,
+        });
+
+    } catch (error) {
+
+        return res.status(500).json({
+            success: false,
+            message: error.message,
+        });
+
+    }
+};
+
+
+
 
