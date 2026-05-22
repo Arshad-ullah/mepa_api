@@ -222,5 +222,36 @@ exports.updateStudent = async (req = request, res = response) => {
 };
 
 
+exports.searchStudents = async (req = request, res = response) => {
+    try {
+        const { name, course, semester } = req.body;
 
+        const query = {};
+
+        if (name) {
+            query.name = { $regex: name, $options: 'i' };
+        }
+
+        // if (course) {
+        //     query.course = { $regex: course, $options: 'i' };
+        // }
+
+        // if (semester) {
+        //     query.semester = { $regex: semester, $options: 'i' };
+        // }
+
+        const students = await Students.find(query);
+
+        return res.status(200).json({
+            success: true,
+            message: 'Students retrieved successfully',
+            data: students,
+        });
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: error.message,
+        });
+    }
+}
 
