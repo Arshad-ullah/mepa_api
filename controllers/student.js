@@ -237,6 +237,11 @@ exports.searchStudents = async (req = request, res = response) => {
         const orConditions = [
             { name: { $regex: search, $options: 'i' } },
             { course: { $regex: search, $options: 'i' } },
+            { city: { $regex: search, $options: 'i' }, },
+            { gender: { $regex: search, $options: 'i' } },
+            { email: { $regex: search, $options: 'i' } },
+            { phone: { $regex: search, $options: 'i' } },
+            // { studentId: { $regex: search, $options: 'i' } },
         ];
 
         // Only add semester condition if search value is a valid number
