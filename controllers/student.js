@@ -224,23 +224,27 @@ exports.updateStudent = async (req = request, res = response) => {
 
 exports.searchStudents = async (req = request, res = response) => {
     try {
-        const { name, course, semester } = req.body;
+        const { search } = req.body;
 
-        const query = {};
-
-        if (name) {
-            query.name = { $regex: name, $options: 'i' };
+        if (!search) {
+            return res.status(200).json({
+                success: true,
+                message: 'Please provide a search value',
+                data: [],
+            });
         }
 
-        // if (course) {
-        //     query.course = { $regex: course, $options: 'i' };
-        // }
+        const orConditions = [
+            { name: { $regex: search, $options: 'i' } },
+            { course: { $regex: search, $options: 'i' } },
+        ];
 
-        // if (semester) {
-        //     query.semester = { $regex: semester, $options: 'i' };
-        // }
-
-        const students = await Students.find(query);
+        // Only add semester condition if search value is a valid number
+        const semesterNumber = Number(search);
+        if (!isNaN(semesterNumber)) {
+            orConditions.push({ semester: semesterNumber });
+        }
+        const students = await Students.find({ $or: orConditions });
 
         return res.status(200).json({
             success: true,
