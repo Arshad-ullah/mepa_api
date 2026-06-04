@@ -32,4 +32,6 @@ mongoose.connect(uri)
     .catch(err => console.error("❌ Connection error:", err));
 
 
-app.listen(8000, () => console.log("server start..http://localhost:8000"))
+// app.listen(8000, () => console.log("server start..http://localhost:8000"))
+
+module.exports = app
