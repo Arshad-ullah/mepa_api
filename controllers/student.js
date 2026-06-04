@@ -249,6 +249,11 @@ exports.searchStudents = async (req = request, res = response) => {
         if (!isNaN(semesterNumber)) {
             orConditions.push({ semester: semesterNumber });
         }
+
+        const studentIdNumber = Number(search);
+        if (!isNaN(studentIdNumber)) {
+            orConditions.push({ studentId: studentIdNumber });
+        }
         const students = await Students.find({ $or: orConditions });
 
         return res.status(200).json({
