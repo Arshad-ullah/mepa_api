@@ -9,5 +9,5 @@ rounter
     .get('/students', controller.getStudents)
     .delete('/deleteStudent', controller.deleteStudent)
     .put('/updateStudent/:studentId', controller.updateStudent)
-    .post('/searchStudent', controller.searchStudents)
+    .get('/searchStudent/:search', controller.searchStudents)
 exports.rounter = rounter

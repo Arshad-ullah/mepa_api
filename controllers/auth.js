@@ -48,11 +48,7 @@ exports.register = async (req, res) => {
 
 
 exports.getAllUser = async (req = request, res = response) => {
-
-
-
     const users = await Model.find()
-
 
 
     res.status(200).json({

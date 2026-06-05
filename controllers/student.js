@@ -222,11 +222,13 @@ exports.updateStudent = async (req = request, res = response) => {
 };
 
 
-exports.searchStudents = async (req = request, res = response) => {
-    try {
-        const { search } = req.body;
 
-        if (!search) {
+exports.searchStudents = async (req, res) => {
+    try {
+
+        const { search } = req.params;
+
+        if (!search?.trim()) {
             return res.status(200).json({
                 success: true,
                 message: 'Please provide a search value',
@@ -237,24 +239,24 @@ exports.searchStudents = async (req = request, res = response) => {
         const orConditions = [
             { name: { $regex: search, $options: 'i' } },
             { course: { $regex: search, $options: 'i' } },
-            { city: { $regex: search, $options: 'i' }, },
+            { city: { $regex: search, $options: 'i' } },
             { gender: { $regex: search, $options: 'i' } },
             { email: { $regex: search, $options: 'i' } },
             { phone: { $regex: search, $options: 'i' } },
-            // { studentId: { $regex: search, $options: 'i' } },
         ];
 
-        // Only add semester condition if search value is a valid number
-        const semesterNumber = Number(search);
-        if (!isNaN(semesterNumber)) {
-            orConditions.push({ semester: semesterNumber });
+        const numericValue = Number(search);
+
+        if (!isNaN(numericValue)) {
+            orConditions.push(
+                { semester: numericValue },
+                { studentId: numericValue }
+            );
         }
 
-        const studentIdNumber = Number(search);
-        if (!isNaN(studentIdNumber)) {
-            orConditions.push({ studentId: studentIdNumber });
-        }
-        const students = await Students.find({ $or: orConditions });
+        const students = await Students.find({
+            $or: orConditions,
+        });
 
         return res.status(200).json({
             success: true,
@@ -267,5 +269,4 @@ exports.searchStudents = async (req = request, res = response) => {
             message: error.message,
         });
     }
-}
-
+};
