@@ -3,12 +3,9 @@ const { Request, Response, request, response } = require('express')
 const Students = require('../model/student');
 const { link } = require('joi');
 
-
 exports.createStudent = async (req = request, res = response) => {
     try {
-
         const { studentId, name, age, gender, grade, course, semester, email, phone, cgpa, isActive, city } = req.body
-
         if (
             !studentId ||
             !name ||
@@ -71,9 +68,7 @@ exports.createStudent = async (req = request, res = response) => {
 
 }
 
-
 // READ data..---------->> 
-
 
 exports.getStudents = async (req = request, res = response) => {
     try {
@@ -96,9 +91,6 @@ exports.getStudents = async (req = request, res = response) => {
 
 
 }
-
-
-
 
 // DELET----->> student delete api
 
@@ -138,12 +130,8 @@ exports.deleteStudent = async (req = request, res = response) => {
 
 exports.updateStudent = async (req = request, res = response) => {
     try {
-
         const { studentId } = req.params;
-
         console.log("sttudentId.." + studentId);
-
-
         const {
             name,
             age,
@@ -221,11 +209,8 @@ exports.updateStudent = async (req = request, res = response) => {
     }
 };
 
-
-
 exports.searchStudents = async (req, res) => {
     try {
-
         const { search } = req.params;
 
         if (!search?.trim()) {
@@ -270,3 +255,46 @@ exports.searchStudents = async (req, res) => {
         });
     }
 };
+
+
+exports.getValues = async (req = request, res = response) => {
+
+
+    try {
+
+        const { name } = req.body;
+
+        if (!name) return res.status(200).json({
+            success: true,
+            message: "Name field requred"
+        })
+
+
+
+        const values = await Students.find({}, { name: 1 })
+
+
+
+
+        return res.status(200).json({
+            success: true,
+            message: 'Students retrieved successfully',
+            data: values,
+        });
+
+
+
+
+
+    } catch (error) {
+
+        return res.status(500).json({
+            success: false,
+            message: error.message,
+        });
+
+
+
+    }
+
+}
