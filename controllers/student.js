@@ -257,44 +257,36 @@ exports.searchStudents = async (req, res) => {
 };
 
 
-exports.getValues = async (req = request, res = response) => {
 
 
+exports.getValues = async (req, res) => {
     try {
+        const { fields } = req.body;
 
-        const { name } = req.body;
+        if (!fields || !Array.isArray(fields) || fields.length === 0) {
+            return res.status(400).json({
+                success: false,
+                message: "Fields are required",
+            });
+        }
 
-        if (!name) return res.status(200).json({
-            success: true,
-            message: "Name field requred"
-        })
+        const projection = { _id: 0 };
 
+        fields.forEach(field => {
+            projection[field] = 1;
+        });
 
-
-        const values = await Students.find({}, { name: 1 })
-
-
-
+        const values = await Students.find({}, projection);
 
         return res.status(200).json({
             success: true,
-            message: 'Students retrieved successfully',
+            message: "Values retrieved successfully",
             data: values,
         });
-
-
-
-
-
     } catch (error) {
-
         return res.status(500).json({
             success: false,
             message: error.message,
         });
-
-
-
     }
-
-}
+};
