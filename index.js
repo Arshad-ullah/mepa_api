@@ -19,12 +19,11 @@ app.use('/v1', authRouter.router)
 app.use('/v2', postRouter.router)
 app.use('/api', medicineRouter.router)
 
+app.use("/chat", require("./routes/chat_rout"));
+
 app.use('/v2', studentRouter.rounter)
 
-
 const server = http.createServer(app)
-
-
 // Socket setup
 const io = new Server(server, {
     cors: {
