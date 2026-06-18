@@ -1,51 +1,46 @@
 const express = require('express');
-const http = require('http');
-const { Server } = require('socket.io');
-const mongoose = require('mongoose');
+const http = require('http')
+const authRouter = require('./routes/auth')
+const data = require('./post.json')
+const postRouter = require('./routes/post_rout')
+const medicineRouter = require('./routes/medicine')
+const connectDB = require('./config/db')
+const chatSocket = require("./sockets/chat_socket");
+const studentRouter = require('./routes/student')
 
-const authRouter = require('./routes/auth');
-const postRouter = require('./routes/post_rout');
-const medicineRouter = require('./routes/medicine');
-const studentRouter = require('./routes/student');
-const uri = "mongodb://localhost:27017/admin";
+const { Server } = require('socket.io')
+
+
+
+
 const app = express();
-app.use(express.json());
-app.use('/v1', authRouter.router);
-app.use('/v2', postRouter.router);
-app.use('/api', medicineRouter.router);
-app.use('/v2', studentRouter.rounter);
+app.use(express.json())
+app.use('/v1', authRouter.router)
+app.use('/v2', postRouter.router)
+app.use('/api', medicineRouter.router)
 
-// Create HTTP server
-const server = http.createServer(app);
+app.use('/v2', studentRouter.rounter)
 
-// Attach Socket.IO
+
+const server = http.createServer(app)
+
+
+// Socket setup
 const io = new Server(server, {
     cors: {
         origin: "*",
-        methods: ["GET", "POST"]
-    }
+        methods: ["GET", "POST"],
+    },
 });
 
-// Socket Connection
-io.on('connection', (socket) => {
-    console.log(`✅ User Connected: ${socket.id}`);
+// init socket events
+chatSocket(io);
+// db connects..
+connectDB()
 
-    socket.on('message', (data) => {
-        console.log('Received:', data["message"]);
 
-        // Send back to all clients
-        io.emit('message', data);
-    });
 
-    socket.on('disconnect', () => {
-        console.log(`❌ User Disconnected: ${socket.id}`);
-    });
-});
 
-mongoose.connect(uri)
-    .then(() => console.log("✅ Successfully connected to MongoDB"))
-    .catch(err => console.error("❌ Connection error:", err));
+server.listen(8000, () => console.log("server start..http://localhost:8000"))
 
-server.listen(8000, () => {
-    console.log('🚀 Server running at http://localhost:8000');
-});
+// module.exports = app
