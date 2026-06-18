@@ -7,13 +7,9 @@ const authRouter = require('./routes/auth');
 const postRouter = require('./routes/post_rout');
 const medicineRouter = require('./routes/medicine');
 const studentRouter = require('./routes/student');
-
 const uri = "mongodb://localhost:27017/admin";
-
 const app = express();
-
 app.use(express.json());
-
 app.use('/v1', authRouter.router);
 app.use('/v2', postRouter.router);
 app.use('/api', medicineRouter.router);
@@ -35,7 +31,7 @@ io.on('connection', (socket) => {
     console.log(`✅ User Connected: ${socket.id}`);
 
     socket.on('message', (data) => {
-        console.log('Received:', data);
+        console.log('Received:', data["message"]);
 
         // Send back to all clients
         io.emit('message', data);
