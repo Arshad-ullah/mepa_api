@@ -3,7 +3,6 @@ const Message = require("../model/Message");
 module.exports = (io) => {
     io.on("connection", (socket) => {
         console.log("✅ User Connected:", socket.id);
-
         // ✅ JOIN ROOM (ADD THIS)
         socket.on("join_room", (roomId) => {
             socket.join(roomId);
