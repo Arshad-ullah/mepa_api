@@ -10,7 +10,8 @@ const studentRouter = require('./routes/student')
 
 const { Server } = require('socket.io')
 
-const pool = require('./services/pg_connect')
+const teacherRouter = require('./routes/teachers')
+
 
 
 
@@ -25,6 +26,8 @@ app.use('/api', medicineRouter.router)
 app.use("/chat", require("./routes/chat_rout"));
 
 app.use('/v2', studentRouter.rounter)
+
+app.use('/teacher', teacherRouter.router)
 
 const server = http.createServer(app)
 // Socket setup
@@ -41,21 +44,6 @@ chatSocket(io);
 connectDB()
 
 
-
-async function testConnection() {
-    try {
-        const result = await pool.query('SELECT * FROM students');
-        console.log('🟢 DB Time:', result.rows[0]);
-        console.log(result.rows);
-
-    } catch (err) {
-        console.error('❌ Query Error:', err);
-    } finally {
-        pool.end();
-    }
-}
-
-testConnection();
 
 
 
