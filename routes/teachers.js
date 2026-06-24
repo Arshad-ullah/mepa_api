@@ -11,6 +11,5 @@ router
     .post('/', teacherController.addTeacher)
 
 
-
 exports.router = router;
 
