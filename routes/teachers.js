@@ -6,8 +6,9 @@ const router = express.Router()
 
 
 
-router.get('/', teacherController.getTeachers)
-
+router
+    .get('/', teacherController.getTeachers)
+    .post('/', teacherController.addTeacher)
 
 
 
