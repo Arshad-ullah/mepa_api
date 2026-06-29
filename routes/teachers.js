@@ -8,6 +8,7 @@ router
     .get('/teacher', teacherController.getTeachers)
     .post('/', teacherController.addTeacher)
 
+
 exports.router = router;
 
 

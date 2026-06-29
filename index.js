@@ -7,6 +7,7 @@ const medicineRouter = require('./routes/medicine')
 const connectDB = require('./config/db')
 const chatSocket = require("./sockets/chat_socket");
 const studentRouter = require('./routes/student')
+const uploadRoutes = require("./routes/upload_route");
 
 const { Server } = require('socket.io')
 
@@ -22,6 +23,7 @@ app.use(express.json())
 app.use('/', authRouter.router)
 app.use('/v2', postRouter.router)
 app.use('/api', medicineRouter.router)
+app.use("/api", uploadRoutes);
 
 app.use("/chat", require("./routes/chat_rout"));
 
