@@ -4,12 +4,10 @@ const express = require('express')
 
 const router = express.Router()
 
-
-
 router
-    .get('/', teacherController.getTeachers)
+    .get('/teacher', teacherController.getTeachers)
     .post('/', teacherController.addTeacher)
 
-
 exports.router = router;
+
 

@@ -27,7 +27,7 @@ app.use("/chat", require("./routes/chat_rout"));
 
 app.use('/v2', studentRouter.rounter)
 
-app.use('/teacher', teacherRouter.router)
+app.use('/department', teacherRouter.router)
 
 const server = http.createServer(app)
 // Socket setup
